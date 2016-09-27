@@ -9,8 +9,9 @@ Meteor.users.after.insert(function (userId, doc) {
     var defaultRoles = Options.get('defaultRoles');
     Roles.addUserToRoles(curUserId, defaultRoles);
   } else {
+    console.log('auto admin broken, skipping');
     // If there is no admin, we will add the admin role to this new user.
-    Roles.addUserToRoles(curUserId, 'admin');
+    // Roles.addUserToRoles(curUserId, 'admin');
     // Pass to the client if the admin exists
     orion.adminExists = true;
     Inject.obj('adminExists', { exists: true });
